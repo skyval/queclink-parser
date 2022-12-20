@@ -31,12 +31,25 @@ const parse = raw => {
 
   // GPS
   if (command[1] === 'GTFRI') {
+    var count = parseInt(parsedData[6]);
+    var locations = [];
+
+    for(var i=7; i <= 12 * count; i +=12){
+      locations.push({
+        c_date: parsedData[i+6] !== '' ? utils.parseDate(parsedData[i+6]) : null,
+        coordinates: [parseFloat(parsedData[i+4]), parseFloat(parsedData[i+5])],
+        altitude: parsedData[i+3] !== '' ? parseFloat(parsedData[i+3]) : null,
+        speed: parsedData[i+1] !== '' ? parseFloat(parsedData[i+1]) : null,
+      });
+    }
+
     data = Object.assign(data, {
       alarm: utils.getAlarm(command[1], null),
       loc: {
         type: 'Point',
         coordinates: [parseFloat(parsedData[11]), parseFloat(parsedData[12])]
       },
+      locations: locations,
       speed: parsedData[8] !== '' ? parseFloat(parsedData[8]) : null,
       gpsStatus: utils.checkGps(
         parseFloat(parsedData[11]),
