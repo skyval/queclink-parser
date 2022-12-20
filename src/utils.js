@@ -40,6 +40,7 @@ const devices = {
   '36': 'GV500', // New Version
   '2C': 'GL300W', // New version
   '3F': 'GMT100', // New version
+  'C3': 'GL320M',
   F8: 'GV800W',
   '41': 'GV75W',
   FC: 'GV600W'

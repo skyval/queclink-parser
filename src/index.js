@@ -8,6 +8,7 @@ const gv75w = require('./gv75w.js')
 const gmt100 = require('./gmt100.js')
 const gv55 = require('./gv55.js')
 const gl300 = require('./gl300.js')
+const gl320m = require('./gl320m.js')
 const gv500 = require('./gv500.js')
 const gv800w = require('./gv800w.js')
 const gv600w = require('./gv600w.js')
@@ -112,6 +113,8 @@ const parse = (raw, options) => {
       result = gmt100.parse(raw.toString())
     } else if (device === 'GL300' || device === 'GL300W') {
       result = gl300.parse(raw.toString())
+    } else if (device === 'GL320M') {
+      result = gl320m.parse(raw.toString())
     } else if (device === 'GV800W') {
       result = gv800w.parse(raw.toString())
     } else if (device === 'GV600W') {
